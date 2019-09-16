@@ -1,0 +1,94 @@
+<!--Dylan DeGrood-->
+<!--Resources: www.w3schools.com along with other sources referenced where the code was used-->
+
+<!DOCTYPE html>
+<html>
+<!--Link to my CSS file-->
+<head> 
+   <link rel="stylesheet" href="stylesheets/degrood21.css">
+   <script
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+   </script>
+</head>
+<body>
+
+<!--Title of Page-->
+<h1>Cheesecake Order Form</h1>
+
+<!--Cheesecake picture-->
+<img id="cheesecakePic" src="https://upload.wikimedia.org/wikipedia/commons/9/9c/Mondays_at_Il_Forno_-_Cheesecake_with_strawberry_sauce.jpg" width="250" height="200" class="center">
+
+<!--Paragraph(header) for quantity selection-->
+<p id="quantity">Quantity Topping</p>
+
+<!--Creating a table layout to put quantity selection next to flavor choice-->
+<table id="toppingOptions" class="center">
+   <tr>
+      <td>
+         <!--Quantity Selection-->
+         <select id="quantitySelection">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+         </select>
+      </td>
+      <td id="blankspace">
+      </td>
+      <td>
+         <!--Radio buttons for flavor choice-->
+         <form action=" ">
+            <input type="radio" name="topping" value="Cherry"> Cherry<br>
+            <input type="radio" name="topping" value="Chocolate"> Chocolate<br>
+            <input type="radio" name="topping" value="Plain"> Plain<br>
+         </form>
+      </td>
+   </tr>
+</table>
+
+<p id="paragraphNotes">Notes:</p>
+
+<!--Placeholder attribute goes away when user starts typing in textarea box-->
+<textarea id="notesText" class="textarea" rows="4" cols="50" placeholder="Enter Any Special Instructions Here">
+</textarea>
+
+<br>
+
+<button id="orderButton" class="button">Order</button>
+
+<!--Smaller header for total orders-->
+<!--Creates a widget looking menu for word Jan with all 12 months as dropdown menu options-->
+<h3>Orders For &nbsp;
+   <div class="dropdown">
+      <span id="monthSelect" style="background-color: yellow">Jan</span>
+      <div id="dropdownMenu" class="dropdown-content">
+         <a>Jan</a>
+         <a>Feb</a>
+         <a>Mar</a>
+         <a>Apr</a>
+         <a>May</a>
+         <a>Jun</a>
+         <a>Jul</a>
+         <a>Aug</a>
+         <a>Sep</a>
+         <a>Oct</a>
+         <a>Nov</a>
+         <a>Dec</a>
+      </div>
+   </div>
+</h3>
+<!--DropDown CSS Code and HTML code from Source:https://www.w3schools.com/css/tryit.asp?filename=trycss_dropdown_text-->
+
+<!--Display a bulleted list of text-->
+<ul class="totalOrders">
+   <li>11 Cherry</li>
+   <li>17 Chocolate</li>
+   <li>31 Plain</li>
+</ul>
+
+<!--Beginning of jQuery Code-->
+<script
+   src="javascripts/cheesecake.js">
+</script>
+
+</body>
+</html>
