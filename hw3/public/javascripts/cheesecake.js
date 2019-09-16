@@ -1,7 +1,7 @@
 /*Helps to wait to run functions once the document fully loads*/
-//$(document).ready(function(){ 
+$(document).ready(function(){ 
 
-    //$(document).ready(function(){
+    $(document).ready(function(){
       $("#orderButton").click(function(){
  
         var flavorTopping = $("input[name='topping']:checked").val();
@@ -44,6 +44,6 @@
  
       });
  
-    //});
+    });
  
- //});
+ });
