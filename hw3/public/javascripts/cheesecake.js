@@ -53,17 +53,18 @@ $(document).ready(function(){
          //Source form ww3 schools
          var xmlhttp = new XMLHttpRequest();
          xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200 && month == "Mar") {
+            if (this.readyState == 4 && this.status == 200 /*&& month == "Mar"*/) {
                var myArr = JSON.parse(this.responseText);
                document.getElementById("cherry").innerHTML = myArr[0].quantity + " " + myArr[0].topping;
                document.getElementById("plain").innerHTML = myArr[1].quantity + " " + myArr[1].topping;
                document.getElementById("chocolate").innerHTML = myArr[2].quantity + " " + myArr[2].topping;
             }
-            else {
-               document.getElementById("cherry").innerHTML = originalCherryText;
-               document.getElementById("chocolate").innerHTML = originalChocolateText;
-               document.getElementById("plain").innerHTML = originalPlainText;
-            }
+            // else {
+            //    document.getElementById("cherry").innerHTML = originalCherryText;
+            //    document.getElementById("chocolate").innerHTML = originalChocolateText;
+            //    document.getElementById("plain").innerHTML = originalPlainText;
+            // }
+            // Puts in original data back if a different month (not march) is selected
          };
          xmlhttp.open("POST", "/orders", true);
          xmlhttp.send();
