@@ -1,3 +1,4 @@
+//Dylan DeGrood
 /*Helps to wait to run functions once the document fully loads*/
 $(document).ready(function(){ 
 

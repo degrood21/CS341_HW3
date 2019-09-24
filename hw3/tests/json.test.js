@@ -1,4 +1,4 @@
-// json.test.js
+// Dylan DeGrood
 //Source: http://www.sheshbabu.com/posts/unit-testing-express-route-handlers/
 const assert = require("assert");
 const httpMocks = require("node-mocks-http");
