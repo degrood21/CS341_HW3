@@ -2,6 +2,12 @@
 $(document).ready(function(){ 
 
     $(document).ready(function(){
+      
+      //gets Original values for orders that were inputed into html file
+      var originalCherryText = document.getElementById("cherry").innerHTML;
+      var originalChocolateText = document.getElementById("chocolate").innerHTML;
+      var originalPlainText = document.getElementById("plain").innerHTML;
+
       $("#orderButton").click(function(){
  
         var flavorTopping = $("input[name='topping']:checked").val();
@@ -41,6 +47,26 @@ $(document).ready(function(){
  
          var month =  $(this).text();
          $('#monthSelect').text(month);
+
+         //if the month is clicked then send a request to server for order information
+         //else remain unchanged or switch back to default order numbers
+         //Source form ww3 schools
+         var xmlhttp = new XMLHttpRequest();
+         xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200 && month == "Mar") {
+               var myArr = JSON.parse(this.responseText);
+               document.getElementById("cherry").innerHTML = myArr[0].quantity + " " + myArr[0].topping;
+               document.getElementById("plain").innerHTML = myArr[1].quantity + " " + myArr[1].topping;
+               document.getElementById("chocolate").innerHTML = myArr[2].quantity + " " + myArr[2].topping;
+            }
+            else {
+               document.getElementById("cherry").innerHTML = originalCherryText;
+               document.getElementById("chocolate").innerHTML = originalChocolateText;
+               document.getElementById("plain").innerHTML = originalPlainText;
+            }
+         };
+         xmlhttp.open("POST", "/orders", true);
+         xmlhttp.send();
  
       });
  
