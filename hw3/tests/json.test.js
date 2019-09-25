@@ -1,22 +1,12 @@
 // Dylan DeGrood
-//Source: http://www.sheshbabu.com/posts/unit-testing-express-route-handlers/
-const assert = require("assert");
-const httpMocks = require("node-mocks-http");
-const router = require("../routes/orders");
+const ordersJS = require("../routes/orders");
+const ordersCopyArray = ordersJS.orders;
 
-describe("Example Router", () => {
-
-  it("matches if cherry quantity is 20 form JSON object", () => {
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            var myArr = JSON.parse(this.responseText);
-            assert(myArr[0].quantity, "20");
-        }
-    };
-    xmlhttp.open("POST", "/orders", true);
-    xmlhttp.send();
-
-  });
-
+test('test orders array is there', () => {
+    // Testing to make sure the file was accessed correctly, and whether the array definied
+    // in orders route file was transferred over.
+    expect(ordersJS).toEqual(expect.anything());
+    // Tests that the expected value from the JSON object is there
+    expect(ordersCopyArray.ordersData[0].quantity).toEqual("20");
 });
+//Source: Dylan Pascua helped me to fix my unit test and showed me how to transfer the array over

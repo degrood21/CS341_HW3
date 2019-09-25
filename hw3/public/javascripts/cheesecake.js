@@ -35,7 +35,7 @@ $(document).ready(function(){
            var orderComplete = $("<p>Thank you! Your order has been placed</p>").css({"background-color": "lightblue", "font-size": "150%"});
            var orderInfo = $("<p>Topping Flavor: " + flavorTopping + "<br>Quantity of Flavor: " + quantityFlavor + "<br>Notes: " + notesTextarea + "</p>").css({"background-color": "lightblue", "font-size": "100%"});
  
-       //Puts the order information and order complete message where the form was
+           //Puts the order information and order complete message where the form was
            $("#cheesecakePic").after(orderInfo);
            $("#cheesecakePic").after(orderComplete);
  
@@ -50,25 +50,17 @@ $(document).ready(function(){
          $('#monthSelect').text(month);
 
          //if the month is clicked then send a request to server for order information
-         //else remain unchanged or switch back to default order numbers
          //Source form ww3 schools
-         var xmlhttp = new XMLHttpRequest();
-         xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200 /*&& month == "Mar"*/) {
-               var myArr = JSON.parse(this.responseText);
-               document.getElementById("cherry").innerHTML = myArr[0].quantity + " " + myArr[0].topping;
-               document.getElementById("plain").innerHTML = myArr[1].quantity + " " + myArr[1].topping;
-               document.getElementById("chocolate").innerHTML = myArr[2].quantity + " " + myArr[2].topping;
-            }
-            // else {
-            //    document.getElementById("cherry").innerHTML = originalCherryText;
-            //    document.getElementById("chocolate").innerHTML = originalChocolateText;
-            //    document.getElementById("plain").innerHTML = originalPlainText;
-            // }
-            // Puts in original data back if a different month (not march) is selected
-         };
-         xmlhttp.open("POST", "/orders", true);
-         xmlhttp.send();
+
+         $.post("/orders", function(orders){
+            var currentOrders = JSON.parse(orders);
+            
+            //Setting the corresponding html attributed to newly acquired info
+            document.getElementById("cherry").innerHTML = currentOrders.ordersData[0].quantity + " " + currentOrders.ordersData[0].topping;
+            document.getElementById("chocolate").innerHTML = currentOrders.ordersData[2].quantity + " " + currentOrders.ordersData[2].topping;
+            document.getElementById("plain").innerHTML = currentOrders.ordersData[1].quantity + " " + currentOrders.ordersData[1].topping;
+        
+         });
  
       });
  
