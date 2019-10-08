@@ -38,6 +38,14 @@ $(document).ready(function(){
            //Puts the order information and order complete message where the form was
            $("#cheesecakePic").after(orderInfo);
            $("#cheesecakePic").after(orderComplete);
+
+           $.post("/neworder", 
+            {
+               quantity: quantityFlavor,
+               topping: flavorTopping,
+               notes: notesTextarea
+
+            }, function(data){})
  
         }
  
@@ -52,9 +60,9 @@ $(document).ready(function(){
          //if the month is clicked then send a request to server for order information
          //Source form ww3 schools
 
-         $.post("/orders", function(orders){
+         $.post("/orders", {month: $('#monthSelect').text()}, function(orders){
             var currentOrders = JSON.parse(orders);
-            
+
             //Setting the corresponding html attributed to newly acquired info
             document.getElementById("cherry").innerHTML = currentOrders.ordersData[0].quantity + " " + currentOrders.ordersData[0].topping;
             document.getElementById("chocolate").innerHTML = currentOrders.ordersData[2].quantity + " " + currentOrders.ordersData[2].topping;
